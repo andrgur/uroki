@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Mastery: Sports & Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .drop-zone { min-height: 40px; border-bottom: 2px dashed #cbd5e1; display: inline-block; min-width: 120px; padding: 0 10px; vertical-align: middle; transition: all 0.2s; }
+        .drop-zone:empty::before { content: '...'; color: #94a3b8; }
+        .draggable { cursor: grab; padding: 4px 12px; background: #4f46e5; color: white; border-radius: 6px; margin: 4px; display: inline-block; font-size: 0.9rem; transition: transform 0.1s; }
+        .draggable:active { cursor: grabbing; transform: scale(0.95); }
+        .input-gap { border-bottom: 2px solid #6366f1; background: transparent; outline: none; padding: 0 5px; width: 140px; text-align: center; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .correct-bg { background-color: #d1fae5 !important; }
+        .incorrect-bg { background-color: #fee2e2 !important; }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen p-4 md:p-8 font-sans">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+        
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-indigo-600 to-blue-500 p-8 text-white text-center">
+            <h1 class="text-3xl font-extrabold mb-2">Lesson Revision: Targeted Vocabulary</h1>
+            <p class="text-indigo-100">Fixing common mistakes and confusing words</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex flex-wrap bg-gray-50 border-b text-xs md:text-sm">
+            <button onclick="switchTab('v1')" id="btn-v1" class="tab-btn flex-1 py-4 px-2 font-bold border-b-4 border-indigo-600 bg-white">Vocab: Match</button>
+            <button onclick="switchTab('v2')" id="btn-v2" class="tab-btn flex-1 py-4 px-2 font-bold border-b-4 border-transparent hover:bg-gray-100">Vocab: Context</button>
+            <button onclick="switchTab('v3')" id="btn-v3" class="tab-btn flex-1 py-4 px-2 font-bold border-b-4 border-transparent hover:bg-gray-100">Vocab: Writing</button>
+            <button onclick="switchTab('g1')" id="btn-g1" class="tab-btn flex-1 py-4 px-2 font-bold border-b-4 border-transparent hover:bg-gray-100">Grammar: Drag</button>
+            <button onclick="switchTab('g2')" id="btn-g2" class="tab-btn flex-1 py-4 px-2 font-bold border-b-4 border-transparent hover:bg-gray-100">Grammar: Brackets</button>
+            <button onclick="switchTab('g3')" id="btn-g3" class="tab-btn flex-1 py-4 px-2 font-bold border-b-4 border-transparent hover:bg-gray-100">Grammar: Quiz</button>
+        </div>
+
+        <div class="p-8">
+            <!-- V1: Drag and Drop Translation -->
+            <div id="tab-v1" class="tab-content active space-y-6">
+                <h2 class="text-xl font-bold text-gray-800">1. Drag & Drop: Problematic Words (RU/EN)</h2>
+                <div class="flex flex-wrap gap-2 p-4 bg-indigo-50 rounded-xl border-2 border-dashed border-indigo-200" id="pool-v1">
+                    <div class="draggable" draggable="true" id="v1-1">Influence</div>
+                    <div class="draggable" draggable="true" id="v1-2">Foul</div>
+                    <div class="draggable" draggable="true" id="v1-3">Obediently</div>
+                    <div class="draggable" draggable="true" id="v1-4">Admire</div>
+                    <div class="draggable" draggable="true" id="v1-5">Violent</div>
+                    <div class="draggable" draggable="true" id="v1-6">Spare</div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-3 border rounded-lg flex justify-between items-center"><span>Нарушение правил (фол)</span> <div class="drop-zone" data-ans="v1-2"></div></div>
+                    <div class="p-3 border rounded-lg flex justify-between items-center"><span>Послушно / Покорно</span> <div class="drop-zone" data-ans="v1-3"></div></div>
+                    <div class="p-3 border rounded-lg flex justify-between items-center"><span>Запасной (лишний)</span> <div class="drop-zone" data-ans="v1-6"></div></div>
+                    <div class="p-3 border rounded-lg flex justify-between items-center"><span>Восхищаться</span> <div class="drop-zone" data-ans="v1-4"></div></div>
+                    <div class="p-3 border rounded-lg flex justify-between items-center"><span>Влиять / Влияние</span> <div class="drop-zone" data-ans="v1-1"></div></div>
+                    <div class="p-3 border rounded-lg flex justify-between items-center"><span>Жёсткий / Насильственный</span> <div class="drop-zone" data-ans="v1-5"></div></div>
+                </div>
+                <button onclick="checkDrag('tab-v1')" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold shadow-lg">Check Match</button>
+            </div>
+
+            <!-- V2: Drag and Drop Context -->
+            <div id="tab-v2" class="tab-content space-y-6">
+                <h2 class="text-xl font-bold text-gray-800">2. Drag & Drop: English Context</h2>
+                <div class="flex flex-wrap gap-2 p-4 bg-blue-50 rounded-xl" id="pool-v2">
+                    <div class="draggable" draggable="true" id="v2-1">detect</div>
+                    <div class="draggable" draggable="true" id="v2-2">behavior</div>
+                    <div class="draggable" draggable="true" id="v2-3">pretends</div>
+                    <div class="draggable" draggable="true" id="v2-4">simulation</div>
+                </div>
+                <div class="space-y-4 text-lg leading-relaxed text-gray-700">
+                    <p>1. The player <span class="drop-zone" data-ans="v2-3"></span> to have been injured to get a penalty.</p>
+                    <p>2. It is becoming very difficult for referees to <span class="drop-zone" data-ans="v2-1"></span> cheating when the game is so fast.</p>
+                    <p>3. <span class="drop-zone" data-ans="v2-4"></span> is one of the worst things in football today.</p>
+                    <p>4. I always admired his <span class="drop-zone" data-ans="v2-2"></span>; he was never a typical "superstar".</p>
+                </div>
+                <button onclick="checkDrag('tab-v2')" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold shadow-lg">Check Context</button>
+            </div>
+
+            <!-- V3: Fill in Gaps (Manual Writing) -->
+            <div id="tab-v3" class="tab-content space-y-6">
+                <h2 class="text-xl font-bold text-gray-800">3. Writing: Correct the Mistakes</h2>
+                <div class="p-4 bg-gray-100 rounded-lg text-center font-mono space-x-4">
+                    <span>realized</span> <span>instead</span> <span>exception</span> <span>brought</span>
+                </div>
+                <div class="space-y-6 italic text-gray-700">
+                    <p>1. The Canadian coach <input type="text" class="input-gap" data-ans="brought"> a spare ski for Gafarov.</p>
+                    <p>2. We should have used a map <input type="text" class="input-gap" data-ans="instead"> of trusting the broken SatNav.</p>
+                    <p>3. He isn't a typical footballer; he is an <input type="text" class="input-gap" data-ans="exception"> to the rule.</p>
+                    <p>4. Only later we <input type="text" class="input-gap" data-ans="realized"> that we had left our dogs at the cafe.</p>
+                </div>
+                <button onclick="checkInputs('tab-v3')" class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold">Check My Spelling</button>
+            </div>
+
+            <!-- G1: Grammar Drag and Drop -->
+            <div id="tab-g1" class="tab-content space-y-6">
+                <h2 class="text-xl font-bold text-gray-800">4. Grammar: Contextual Linkers</h2>
+                <div class="flex flex-wrap gap-2 p-4 bg-purple-50 rounded-xl" id="pool-g1">
+                    <div class="draggable" draggable="true" id="g1-1">when</div>
+                    <div class="draggable" draggable="true" id="g1-2">already</div>
+                    <div class="draggable" draggable="true" id="g1-3">suddenly</div>
+                </div>
+                <div class="space-y-4">
+                    <p>1. Gafarov was struggling on one ski <span class="drop-zone" data-ans="g1-1"></span> Wadsworth ran out to help.</p>
+                    <p>2. <span class="drop-zone" data-ans="g1-3"></span>, the couple realized they were in the wrong town.</p>
+                    <p>3. The race had <span class="drop-zone" data-ans="g1-2"></span> started when he broke his equipment.</p>
+                </div>
+                <button onclick="checkDrag('tab-g1')" class="w-full bg-purple-600 text-white py-3 rounded-lg font-bold">Check Grammar</button>
+            </div>
+
+            <!-- G2: Grammar Brackets -->
+            <div id="tab-g2" class="tab-content space-y-6">
+                <h2 class="text-xl font-bold text-gray-800">5. Open the Brackets (Past Tense Master)</h2>
+                <div class="space-y-4">
+                    <div class="p-4 bg-indigo-50 rounded-lg">
+                        <p class="mb-1 text-sm text-indigo-800 font-bold">Past Continuous (process):</p>
+                        <p>While Gafarov (try) <input type="text" class="input-gap" data-ans="was trying"> to continue, the coach appeared.</p>
+                    </div>
+                    <div class="p-4 bg-indigo-50 rounded-lg">
+                        <p class="mb-1 text-sm text-indigo-800 font-bold">Past Perfect (before everything else):</p>
+                        <p>Wadsworth (bring) <input type="text" class="input-gap" data-ans="had brought"> a spare ski because he wanted to be ready.</p>
+                    </div>
+                    <div class="p-4 bg-indigo-50 rounded-lg">
+                        <p class="mb-1 text-sm text-indigo-800 font-bold">Past Simple (completed action):</p>
+                        <p>The SatNav (give) <input type="text" class="input-gap" data-ans="gave"> them the wrong direction twice.</p>
+                    </div>
+                </div>
+                <button onclick="checkInputs('tab-g2')" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold">Check Tenses</button>
+            </div>
+
+            <!-- G3: Grammar Questionnaire -->
+            <div id="tab-g3" class="tab-content space-y-6">
+                <h2 class="text-xl font-bold text-gray-800">6. Grammar Concept Check</h2>
+                <div class="space-y-4">
+                    <div class="quiz-q p-4 border rounded-lg" data-ans="b">
+                        <p class="font-bold mb-2">"He brought a ski." vs "He had brought a ski." — Which means he had it with him BEFORE the race even started?</p>
+                        <button onclick="pick(this, 'a')" class="block w-full text-left p-2 hover:bg-gray-100 rounded">A) He brought a ski</button>
+                        <button onclick="pick(this, 'b')" class="block w-full text-left p-2 hover:bg-gray-100 rounded">B) He had brought a ski</button>
+                    </div>
+                    <div class="quiz-q p-4 border rounded-lg" data-ans="a">
+                        <p class="font-bold mb-2">We use Past Continuous (was/were -ing) to describe:</p>
+                        <button onclick="pick(this, 'a')" class="block w-full text-left p-2 hover:bg-gray-100 rounded">A) A background action in progress</button>
+                        <button onclick="pick(this, 'b')" class="block w-full text-left p-2 hover:bg-gray-100 rounded">B) A quick, sudden action</button>
+                    </div>
+                </div>
+                <button onclick="checkQuiz()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold">Submit Quiz</button>
+            </div>
+        </div>
+
+        <!-- Feedback Area -->
+        <div id="feedback" class="hidden m-8 p-4 rounded-xl text-center font-bold"></div>
+    </div>
+
+    <script>
+        function switchTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('border-indigo-600', 'bg-white');
+                b.classList.add('border-transparent');
+            });
+            document.getElementById('tab-' + id).classList.add('active');
+            document.getElementById('btn-' + id).classList.add('border-indigo-600', 'bg-white');
+            document.getElementById('feedback').classList.add('hidden');
+        }
+
+        document.addEventListener('dragstart', e => { if (e.target.classList.contains('draggable')) e.dataTransfer.setData('text', e.target.id); });
+        document.addEventListener('dragover', e => e.preventDefault());
+        document.addEventListener('drop', e => {
+            e.preventDefault();
+            const zone = e.target.closest('.drop-zone');
+            const data = e.dataTransfer.getData('text');
+            const dragEl = document.getElementById(data);
+            if (zone) {
+                if (zone.firstChild) {
+                    const poolId = "pool-" + zone.closest('.tab-content').id.split('-')[1];
+                    document.getElementById(poolId).appendChild(zone.firstChild);
+                }
+                zone.appendChild(dragEl);
+            }
+        });
+
+        function checkDrag(tabId) {
+            const container = document.getElementById(tabId);
+            const zones = container.querySelectorAll('.drop-zone');
+            let correct = 0;
+            zones.forEach(z => {
+                if (z.firstChild && z.firstChild.id === z.dataset.ans) {
+                    z.classList.add('correct-bg');
+                    z.classList.remove('incorrect-bg');
+                    correct++;
+                } else {
+                    z.classList.add('incorrect-bg');
+                    z.classList.remove('correct-bg');
+                }
+            });
+            showFeedback(correct === zones.length ? "Perfect match!" : `Check again: ${correct}/${zones.length} correct.`, correct === zones.length);
+        }
+
+        function checkInputs(tabId) {
+            const container = document.getElementById(tabId);
+            const inputs = container.querySelectorAll('.input-gap');
+            let correct = 0;
+            inputs.forEach(i => {
+                if (i.value.trim().toLowerCase() === i.dataset.ans.toLowerCase()) {
+                    i.classList.add('bg-green-100', 'text-green-700');
+                    i.classList.remove('bg-red-100', 'text-red-700');
+                    correct++;
+                } else {
+                    i.classList.add('bg-red-100', 'text-red-700');
+                }
+            });
+            showFeedback(correct === inputs.length ? "Well done!" : `Check your spelling or grammar: ${correct}/${inputs.length} correct.`, correct === inputs.length);
+        }
+
+        function pick(btn, val) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('button').forEach(b => b.classList.remove('bg-indigo-600', 'text-white'));
+            btn.classList.add('bg-indigo-600', 'text-white');
+            parent.dataset.user = val;
+        }
+
+        function checkQuiz() {
+            const questions = document.querySelectorAll('.quiz-q');
+            let correct = 0;
+            questions.forEach(q => {
+                if (q.dataset.user === q.dataset.ans) {
+                    q.classList.add('bg-green-50', 'border-green-500');
+                    correct++;
+                } else {
+                    q.classList.add('bg-red-50', 'border-red-500');
+                }
+            });
+            showFeedback(`Quiz finished! Score: ${correct}/${questions.length}`, correct === questions.length);
+        }
+
+        function showFeedback(msg, isSuccess) {
+            const fb = document.getElementById('feedback');
+            fb.innerText = msg;
+            fb.className = `m-8 p-4 rounded-xl text-center font-bold ${isSuccess ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'}`;
+            fb.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
